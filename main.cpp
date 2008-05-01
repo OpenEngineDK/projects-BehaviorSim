@@ -7,6 +7,8 @@
 // See the GNU General Public License for more details (see LICENSE). 
 //--------------------------------------------------------------------
 
+#include <Meta/Config.h>
+
 #include <Core/GameEngine.h>
 #include <Core/IGameFactory.h>
 #include <Logging/Logger.h>
