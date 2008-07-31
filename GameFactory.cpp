@@ -13,6 +13,7 @@
 #include <Devices/SDLInput.h>
 #include <Display/Viewport.h>
 #include <Display/ViewingVolume.h>
+#include <Display/Frustum.h>
 #include <Display/SDLFrame.h>
 #include <Logging/Logger.h>
 #include <Renderers/OpenGL/Renderer.h>
@@ -82,10 +83,15 @@ GameFactory::GameFactory() {
     // Setup the camera
     camera = new Camera(*(new ViewingVolume()));
     camera->SetPosition(Vector<3,float>(0,20,100));
-    viewport->SetViewingVolume(camera);
+    //viewport->SetViewingVolume(camera);
+
+    // frustum hack
+    Frustum* frustum = new Frustum(*camera);
+    frustum->SetFar(1000);
+    viewport->SetViewingVolume(frustum);
 
     // Add a rendering view to the renderer
-    this->renderer->AddRenderingView(new RenderingView(*viewport));
+    this->renderer->process.Attach(*(new RenderingView(*viewport)));
 }
 
 /**
@@ -113,14 +119,12 @@ bool GameFactory::SetupEngine(IGameEngine& engine) {
 
     // Bind the quit handler
     QuitHandler* quit_h = new QuitHandler();
-
-    Listener<QuitHandler, KeyboardEventArg>* quit_l
-      = new Listener<QuitHandler, KeyboardEventArg> (*quit_h, &QuitHandler::HandleQuit);
-    IKeyboard::keyUpEvent.Add(quit_l);
+    quit_h->BindToEventSystem();
 
     // Register the handler as a listener on up and down keyboard events.
     MoveHandler* move_h = new MoveHandler(*camera);
-    move_h->RegisterWithEngine(engine);
+    engine.AddModule(*move_h);
+    move_h->BindToEventSystem();
     
     camera->SetPosition(Vector<3,float>(30.0, 350.0, 350.0));
     camera->LookAt(     Vector<3,float>(30.0,   0.0, 80.0));
