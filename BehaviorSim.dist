@@ -1,0 +1,25 @@
+# Behavior Simulation Distribution
+
+# Main OpenEngine repository
+darcs / http://openengine.dk/code/openengine
+
+# Required extensions
+darcs /extensions/SDL             http://openengine.dk/code/extensions/SDL
+darcs /extensions/TGAResource     http://openengine.dk/code/extensions/TGAResource
+darcs /extensions/OBJResource     http://openengine.dk/code/extensions/OBJResource
+darcs /extensions/OpenGLRenderer  http://openengine.dk/code/extensions/OpenGLRenderer
+darcs /extensions/GenericHandlers http://openengine.dk/code/extensions/GenericHandlers
+
+darcs /extensions/BehaviorTree    http://openengine.dk/code/extensions/BehaviorTree
+darcs /extensions/GenerelBehavior http://openengine.dk/code/extensions/GenerelBehavior
+
+# Some working project
+darcs /projects/BehaviorSim http://openengine.dk/code/projects/BehaviorSim
+
+# Libraries for various system
+win32  /libraries http://openengine.dk/data/libraries/sdl-win32.zip
+darwin /libraries http://openengine.dk/data/libraries/sdl-osx.zip
+linux  /libraries http://openengine.dk/data/libraries/sdl-linux.zip
+
+# Content
+any /projects/BehaviorSim/data http://openengine.dk/data/models/BehaviorSimData.zip
