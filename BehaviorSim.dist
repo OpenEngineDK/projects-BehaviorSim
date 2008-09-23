@@ -2,6 +2,7 @@
 
 # Main OpenEngine repository
 darcs / http://openengine.dk/code/openengine
+darcs-dev / fh.daimi.au.dk:/users/cgd/code/openengine
 
 # Required extensions
 darcs /extensions/SDL             http://openengine.dk/code/extensions/SDL
@@ -13,8 +14,19 @@ darcs /extensions/GenericHandlers http://openengine.dk/code/extensions/GenericHa
 darcs /extensions/BehaviorTree    http://openengine.dk/code/extensions/BehaviorTree
 darcs /extensions/GenerelBehavior http://openengine.dk/code/extensions/GenerelBehavior
 
+darcs-dev /extensions/SDL                    fh.daimi.au.dk:/users/cgd/code/extensions/SDL
+darcs-dev /extensions/TGAResource            fh.daimi.au.dk:/users/cgd/code/extensions/TGAResource
+darcs-dev /extensions/OBJResource            fh.daimi.au.dk:/users/cgd/code/extensions/OBJResource
+darcs-dev /extensions/OpenGLRenderer         fh.daimi.au.dk:/users/cgd/code/extensions/OpenGLRenderer
+darcs-dev /extensions/GenericHandlers        fh.daimi.au.dk:/users/cgd/code/extensions/GenericHandlers
+
+darcs-dev /extensions/BehaviorTree           fh.daimi.au.dk:/users/cgd/code/extensions/BehaviorTree
+darcs-dev /extensions/GenerelBehavior        fh.daimi.au.dk:/users/cgd/code/extensions/GenerelBehavior
+
+
 # Some working project
 darcs /projects/BehaviorSim http://openengine.dk/code/projects/BehaviorSim
+darcs-dev /projects/BehaviorSim fh.daimi.au.dk:/users/cgd/code/projects/BehaviorSim
 
 # Libraries for various system
 win32  /libraries http://openengine.dk/data/libraries/sdl-win32.zip
