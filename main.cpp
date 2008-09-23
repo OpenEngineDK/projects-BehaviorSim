@@ -9,8 +9,7 @@
 
 #include <Meta/Config.h>
 
-#include <Core/GameEngine.h>
-#include <Core/IGameFactory.h>
+#include <Core/Engine.h>
 #include <Logging/Logger.h>
 #include <Logging/StreamLogger.h>
 #include "GameFactory.h"
@@ -23,8 +22,11 @@ int main( int argc, char** argv ) {
     Logger::AddLogger(new StreamLogger(&std::cout));
 
     // Start the engine.
-    IGameEngine& engine = GameEngine::Instance();
-    engine.Start(new GameFactory());
+    Engine engine;
+    GameFactory* gf = new GameFactory();
+    gf->SetupEngine(engine);
+    engine.Start();
+    delete gf;
 
     // Return when the engine stops.
     return EXIT_SUCCESS;

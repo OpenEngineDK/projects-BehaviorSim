@@ -91,7 +91,7 @@ GameFactory::GameFactory() {
     viewport->SetViewingVolume(frustum);
 
     // Add a rendering view to the renderer
-    this->renderer->process.Attach(*(new RenderingView(*viewport)));
+    this->renderer->ProcessEvent().Attach(*(new RenderingView(*viewport)));
 }
 
 /**
@@ -103,7 +103,16 @@ GameFactory::GameFactory() {
  *
  * @param engine The game engine instance.
  */
-bool GameFactory::SetupEngine(IGameEngine& engine) {
+bool GameFactory::SetupEngine(IEngine& engine) {
+    engine.InitializeEvent().Attach(*frame);
+    engine.ProcessEvent().Attach(*frame);
+    engine.DeinitializeEvent().Attach(*frame);
+    
+    // setup renderer
+    engine.InitializeEvent().Attach(*renderer);
+    engine.ProcessEvent().Attach(*renderer);
+    engine.DeinitializeEvent().Attach(*renderer);
+
     // First we set the resources directory
     string resourcedir = "./projects/BehaviorSim/data/";
     DirectoryManager::AppendPath(resourcedir);
@@ -115,16 +124,21 @@ bool GameFactory::SetupEngine(IGameEngine& engine) {
 
     // Setup input handling
     SDLInput* input = new SDLInput();
-    engine.AddModule(*input);
+    // Bind to the engine for processing time
+    engine.InitializeEvent().Attach(*input);
+    engine.ProcessEvent().Attach(*input);
+    engine.DeinitializeEvent().Attach(*input);
 
     // Bind the quit handler
-    QuitHandler* quit_h = new QuitHandler();
-    quit_h->BindToEventSystem();
+    QuitHandler* quit_h = new QuitHandler(engine);
+    input->KeyEvent().Attach(*quit_h);
 
     // Register the handler as a listener on up and down keyboard events.
-    MoveHandler* move_h = new MoveHandler(*camera);
-    engine.AddModule(*move_h);
-    move_h->BindToEventSystem();
+    MoveHandler* move_h = new MoveHandler(*camera, *input);
+    input->KeyEvent().Attach(*move_h);
+    engine.InitializeEvent().Attach(*move_h);
+    engine.ProcessEvent().Attach(*move_h);
+    engine.DeinitializeEvent().Attach(*move_h);
     
     camera->SetPosition(Vector<3,float>(30.0, 350.0, 350.0));
     camera->LookAt(     Vector<3,float>(30.0,   0.0, 80.0));
@@ -183,7 +197,9 @@ bool GameFactory::SetupEngine(IGameEngine& engine) {
 		
 	    ProbabilitySelector* dwarfBehavior = new ProbabilitySelector();
 	    LogicModule* logic = new LogicModule(new BehaviorTree(dwarfBehavior));
-	    engine.AddModule(*logic);
+        engine.InitializeEvent().Attach(*logic);
+        engine.ProcessEvent().Attach(*logic);
+        engine.DeinitializeEvent().Attach(*logic);
 	    
    	    Sequence* mineGold = new Sequence();
 	    Sequence* quenchThirst = new Sequence();

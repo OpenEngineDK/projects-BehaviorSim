@@ -27,7 +27,6 @@ TARGET_LINK_LIBRARIES(${PROJECT_NAME}
   OpenEngine_Logging
   OpenEngine_Display
   OpenEngine_Devices
-  OpenEngine_Renderers_OpenGL
   OpenEngine_Scene
   OpenEngine_Resources
   # Extensions

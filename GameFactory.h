@@ -12,10 +12,11 @@
 #define _TEST_GAME_FACTORY_H_
 
 // Game engine interface
-#include <Core/IGameFactory.h>
+#include <Core/IEngine.h>
 #include <Display/Camera.h>
 #include <Display/Viewport.h>
 #include <Scene/ISceneNode.h>
+#include <Renderers/IRenderer.h>
 
 // Namespaces
 using namespace OpenEngine::Core;
@@ -30,7 +31,7 @@ using namespace OpenEngine::Renderers;
  * 
  * @see IGameFactory
  */
-class GameFactory : public IGameFactory {
+class GameFactory {
 
 private:
     IFrame*      frame;         // member variable for the engine frame
@@ -41,7 +42,7 @@ private:
     Camera*    camera;
 public:
     GameFactory();
-    bool         SetupEngine(IGameEngine& engine);
+    bool         SetupEngine(IEngine& engine);
     IFrame*      GetFrame();
     IRenderer*   GetRenderer();
 
