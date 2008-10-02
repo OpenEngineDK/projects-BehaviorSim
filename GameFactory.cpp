@@ -24,7 +24,6 @@
 #include <Resources/TGAResource.h>
 #include <Scene/GeometryNode.h>
 #include <Scene/TransformationNode.h>
-#include <Meta/OpenGL.h>
 
 #include <string>
 #include <fstream>
