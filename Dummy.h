@@ -16,7 +16,6 @@
 
 // For the rendering of the properties of the dwarf
 #include <Renderers/IRenderer.h>
-#include <Renderers/IRenderNode.h>
 
 // Forward declaration of the gold mine
 class GoldMine;

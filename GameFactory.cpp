@@ -22,6 +22,7 @@
 #include <Resources/File.h>
 #include <Resources/OBJResource.h>
 #include <Resources/TGAResource.h>
+#include <Scene/SceneNode.h>
 #include <Scene/GeometryNode.h>
 #include <Scene/TransformationNode.h>
 
@@ -77,7 +78,7 @@ GameFactory::GameFactory() {
     viewport = new Viewport(*frame);
 
     // Create a renderer.
-    this->renderer = new Renderer();
+    this->renderer = new Renderer(viewport);
 
     // Setup the camera
     camera = new Camera(*(new ViewingVolume()));

@@ -12,12 +12,13 @@
 
 // Game engine interface
 #include <Renderers/IRenderer.h>
-#include <Renderers/IRenderNode.h>
+#include <Scene/RenderNode.h>
 
 #include "Location.h"
 
 // Namespaces
 using namespace OpenEngine::Core;
+using namespace OpenEngine::Scene;
 using namespace OpenEngine::Renderers;
 
 // Forward declaration of the dwarf class
@@ -30,9 +31,9 @@ private:
 	int amountPerLose;
 	int gold;
 	int capacity;
-	IRenderNode* storageRenderNode;
+	RenderNode* storageRenderNode;
 	
-	class GoldStorageRenderNode : public IRenderNode {
+	class GoldStorageRenderNode : public RenderNode {
 	private:
 		GoldStorage* storage;
 		
@@ -113,7 +114,7 @@ public:
     	return location;
     }
     
-    IRenderNode* GetRenderNode() {
+    RenderNode* GetRenderNode() {
     	return storageRenderNode;
     }
     

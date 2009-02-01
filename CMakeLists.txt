@@ -36,4 +36,5 @@ TARGET_LINK_LIBRARIES(${PROJECT_NAME}
   Extensions_OBJResource
   Extensions_BehaviorTree
   Extensions_GenerelBehavior
+  Extensions_OpenGLRenderer
 )

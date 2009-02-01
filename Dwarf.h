@@ -16,7 +16,7 @@
 
 // For the rendering of the properties of the dwarf
 #include <Renderers/IRenderer.h>
-#include <Renderers/IRenderNode.h>
+#include <Scene/RenderNode.h>
 
 #include "Dummy.h"
 
@@ -26,17 +26,18 @@ class GoldStorage;
 // Namespaces
 using namespace OpenEngine::Core;
 using namespace OpenEngine::Resources;
+using namespace OpenEngine::Scene;
 using namespace OpenEngine::Renderers;
 
 class Dwarf : public Dummy {
 	private:
-	IRenderNode* renderNode;
+	RenderNode* renderNode;
 	
 	static const int MAX_GOLD = 5;
 	int gold;
 	GoldStorage* currentGoldStorage;
 	
-	class DwarfRenderNode : public IRenderNode {
+	class DwarfRenderNode : public RenderNode {
 	private:
 		Dwarf* dwarf;
 		

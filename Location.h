@@ -12,10 +12,11 @@
 
 // Game engine interface
 #include <Renderers/IRenderer.h>
-#include <Renderers/IRenderNode.h>
+#include <Scene/RenderNode.h>
 
 // Namespaces
 using namespace OpenEngine::Core;
+using namespace OpenEngine::Scene;
 using namespace OpenEngine::Renderers;
 
 // Forward declaration of the dwarf class
@@ -24,11 +25,11 @@ class Dwarf;
 class Location {
 private:
 	Vector<3,float> position;
-	IRenderNode* renderNode;
+	RenderNode* renderNode;
 	float size;
 	Vector<3,float> color;
 	
-	class LocationRenderNode : public IRenderNode {
+	class LocationRenderNode : public RenderNode {
 	private:
 		Location* location;
 		
@@ -61,7 +62,7 @@ public:
 		return position;
     }
     
-    IRenderNode* GetRenderNode() {
+    RenderNode* GetRenderNode() {
     	return renderNode;
     }
     
