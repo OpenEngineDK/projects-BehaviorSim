@@ -87,7 +87,7 @@ GameFactory::GameFactory() {
 
     // frustum hack
     Frustum* frustum = new Frustum(*camera);
-    frustum->SetFar(1000);
+    //frustum->SetFar(1000);
     viewport->SetViewingVolume(frustum);
 
     // Add a rendering view to the renderer
@@ -150,13 +150,15 @@ bool GameFactory::SetupEngine(IEngine& engine) {
     TestSuite* testSuite = new TestSuite();
     testSuite->TestAll();
 
-	IModelResource* skyboxRes = &*ResourceManager<IModelResource>::Create("Skybox2/Skybox.obj");
+	IModelResourcePtr skyboxRes = 
+        ResourceManager<IModelResource>::Create("Skybox2/Skybox.obj");
 	skyboxRes->Load();
 	TransformationNode* skyboxTrans = new TransformationNode();
 	skyboxTrans->AddNode(skyboxRes->GetSceneNode());
 	root->AddNode(skyboxTrans);
 	
-	IModelResource* groundRes = &*ResourceManager<IModelResource>::Create("Ground/Ground.obj");
+	IModelResourcePtr groundRes = 
+        ResourceManager<IModelResource>::Create("Ground/Ground.obj");
 	groundRes->Load();
 	root->AddNode(groundRes->GetSceneNode());
 

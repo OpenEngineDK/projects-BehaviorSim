@@ -36,7 +36,8 @@ public:
 	
 		// TODO: Gem modellen i en display list!
 	
-		IModelResource* objResource = &*ResourceManager<IModelResource>::Create("Ragdoll/Ragdoll.obj");
+		IModelResourcePtr objResource = 
+            ResourceManager<IModelResource>::Create("Ragdoll/Ragdoll.obj");
 		objResource->Load();
 		node = objResource->GetSceneNode()->Clone();
 
