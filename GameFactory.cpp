@@ -38,7 +38,7 @@
 #include "Dwarf.h"
 #include "Location.h"
 #include "GoldStorage.h"
-#include <Logic/LogicModule.h>
+//#include <Logic/LogicModule.h>
 #include <Logic/BehaviorTree.h>
 #include <Logic/Selector.h>
 #include <Logic/Sequence.h>
@@ -198,10 +198,10 @@ bool GameFactory::SetupEngine(IEngine& engine) {
 		root->AddNode(transNode);
 		
 	    ProbabilitySelector* dwarfBehavior = new ProbabilitySelector();
-	    LogicModule* logic = new LogicModule(new BehaviorTree(dwarfBehavior));
-        engine.InitializeEvent().Attach(*logic);
-        engine.ProcessEvent().Attach(*logic);
-        engine.DeinitializeEvent().Attach(*logic);
+	    //LogicModule* logic = new LogicModule(new BehaviorTree(dwarfBehavior));
+        //engine.InitializeEvent().Attach(*logic);
+        //engine.ProcessEvent().Attach(*logic);
+        //engine.DeinitializeEvent().Attach(*logic);
 	    
    	    Sequence* mineGold = new Sequence();
 	    Sequence* quenchThirst = new Sequence();
